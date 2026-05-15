@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dasbor Keuangan Pribadi</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1>Dasbor Keuangan Pribadi</h1>
+    <p>Kelola pemasukan, pengeluaran, dan target anggaran bulanan.</p>
+  </header>
+
+  <main class="container">
+    <section class="card summary-grid">
+      <article>
+        <h3>Total Pendapatan</h3>
+        <p id="totalIncome">Rp0</p>
+      </article>
+      <article>
+        <h3>Total Pengeluaran</h3>
+        <p id="totalExpense">Rp0</p>
+      </article>
+      <article>
+        <h3>Sisa Saldo</h3>
+        <p id="balance">Rp0</p>
+      </article>
+      <article>
+        <h3>Rasio Pengeluaran</h3>
+        <p id="expenseRatio">0%</p>
+      </article>
+    </section>
+
+    <section class="grid-two">
+      <section class="card">
+        <h2>Catat Transaksi</h2>
+        <form id="transactionForm">
+          <div class="field">
+            <label for="type">Jenis</label>
+            <select id="type" required>
+              <option value="income">Pendapatan</option>
+              <option value="expense">Pengeluaran</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="category">Kategori</label>
+            <select id="category" required></select>
+          </div>
+          <div class="field">
+            <label for="amount">Jumlah (Rp)</label>
+            <input id="amount" type="number" min="1000" step="1000" required />
+          </div>
+          <div class="field">
+            <label for="date">Tanggal</label>
+            <input id="date" type="date" required />
+          </div>
+          <div class="field">
+            <label for="note">Catatan</label>
+            <input id="note" type="text" placeholder="Contoh: Belanja mingguan" />
+          </div>
+          <button type="submit">Tambah Transaksi</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Pendapatan vs Pengeluaran</h2>
+        <canvas id="incomeExpenseChart" height="220"></canvas>
+      </section>
+    </section>
+
+    <section class="grid-two">
+      <section class="card">
+        <h2>Kategori Anggaran</h2>
+        <div id="budgetList"></div>
+      </section>
+
+      <section class="card">
+        <h2>Ringkasan Bulanan</h2>
+        <div id="monthlySummary"></div>
+      </section>
+    </section>
+
+    <section class="card">
+      <h2>Riwayat Transaksi</h2>
+      <div class="table-actions">
+        <button id="clearAllBtn" type="button" class="danger-btn">Hapus Semua Data</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Jenis</th>
+              <th>Kategori</th>
+              <th>Catatan</th>
+              <th>Jumlah</th>
+            </tr>
+          </thead>
+          <tbody id="transactionTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
